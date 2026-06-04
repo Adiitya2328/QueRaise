@@ -5,3 +5,8 @@ psycopg2-binary==2.9.9
 google-generativeai==0.7.0
 python-dotenv==1.0.1
 pandas==2.2.2
+
+sqlalchemy==2.0.31
+pydantic==2.7.4
+requests==2.32.3
+plotly==5.22.0
