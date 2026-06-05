@@ -1,4 +1,5 @@
 from backend.config import settings
+print("Gemini Key Loaded:", bool(settings.GEMINI_API_KEY))
 
 print("DB_HOST:", settings.DB_HOST)
 print("DB_NAME:", settings.DB_NAME)
