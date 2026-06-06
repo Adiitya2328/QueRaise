@@ -1,16 +1,10 @@
-# Generate SQL using Gemini AI
-
-from google import genai
-from backend.config import settings
-
-
-# Create Gemini client using API key from .env
-client = genai.Client(api_key=settings.GEMINI_API_KEY)
+from backend.llm_provider import generate_response
+from backend.sql_cleaner import clean_sql
 
 
 def generate_sql(system_prompt, user_question):
     """
-    Convert natural language question into SQL using Gemini.
+    Convert natural language into SQL.
     """
 
     prompt = f"""
@@ -20,9 +14,6 @@ User Question:
 {user_question}
 """
 
-    response = client.models.generate_content(
-        model="gemini-3-flash-preview",
-        contents=prompt
-    )
+    response = generate_response(prompt)
 
-    return response.text.strip()
+    return clean_sql(response)
