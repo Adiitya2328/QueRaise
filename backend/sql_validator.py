@@ -29,8 +29,10 @@ def validate_query(sql_query):
 
     query_type = classify_query(sql_query)
 
-    if query_type == "BLOCKED":
-        return False, "Dangerous query detected."
+    # Version 1 = READ ONLY
+
+    if query_type != "READ":
+        return False, "Only SELECT queries are allowed."
 
     if not validate_tables(sql_query):
         return False, "Invalid table detected."
