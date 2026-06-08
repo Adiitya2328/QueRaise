@@ -1,17 +1,14 @@
-from backend.config import settings
-print("Gemini Key Loaded:", bool(settings.GEMINI_API_KEY))
+from backend.database import test_connection
 
-print("DB_HOST:", settings.DB_HOST)
-print("DB_NAME:", settings.DB_NAME)
-print("DB_USER:", settings.DB_USER)
-print("DB_PASSWORD:", settings.DB_PASSWORD)
+success = test_connection(
+    host="localhost",
+    port=5432,
+    database="chinook",
+    user="postgres",
+    password="YOUR_PASSWORD"
+)
 
-from backend.database import get_connection
-
-connection = get_connection()
-
-if connection:
+if success:
     print("✅ Connection Test Passed")
-    connection.close()
 else:
     print("❌ Connection Test Failed")

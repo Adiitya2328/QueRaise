@@ -1,12 +1,25 @@
 from backend.database import get_connection
 
 
-def execute_query(query):
+def execute_query(
+    query,
+    host=None,
+    port=None,
+    database=None,
+    user=None,
+    password=None
+):
     """
     Execute SQL query and return results.
     """
 
-    connection = get_connection()
+    connection = get_connection(
+        host=host,
+        port=port,
+        database=database,
+        user=user,
+        password=password
+    )
 
     if not connection:
         return None

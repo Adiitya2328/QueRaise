@@ -20,7 +20,12 @@ def query_database(
 ):
 
     return process_question(
-        request.question
+        question=request.question,
+        host=request.host,
+        port=request.port,
+        database=request.database,
+        user=request.user,
+        password=request.password
     )
 
 @router.post("/test-connection")

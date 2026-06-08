@@ -1,7 +1,13 @@
 from backend.query_executor import execute_query
 
 
-def get_schema_context():
+def get_schema_context(
+    host,
+    port,
+    database,
+    user,
+    password
+):
     """
     Get table and column information from PostgreSQL.
     """
@@ -13,7 +19,14 @@ def get_schema_context():
     ORDER BY table_name, ordinal_position;
     """
 
-    results = execute_query(query)
+    results = execute_query(
+        query,
+        host=host,
+        port=port,
+        database=database,
+        user=user,
+        password=password
+    )
 
     schema_text = "Database Schema:\n"
 

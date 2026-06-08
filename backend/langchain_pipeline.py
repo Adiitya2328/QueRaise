@@ -5,14 +5,27 @@ from backend.sql_validator import validate_query
 from backend.query_executor import execute_query
 
 
-def run_nl_to_sql(question):
+def run_nl_to_sql(
+    question,
+    host,
+    port,
+    database,
+    user,
+    password
+):
     """
     Complete NL-to-SQL workflow.
     """
 
     try:
 
-        schema = get_schema_context()
+        schema = get_schema_context(
+            host=host,
+            port=port,
+            database=database,
+            user=user,
+            password=password
+        )
 
         chain = create_sql_chain()
 
@@ -35,7 +48,14 @@ def run_nl_to_sql(question):
                 "results": None
             }
 
-        results = execute_query(sql_query)
+        results = execute_query(
+            sql_query,
+            host=host,
+            port=port,
+            database=database,
+            user=user,
+            password=password
+        )
 
         return {
             "success": True,
@@ -44,11 +64,13 @@ def run_nl_to_sql(question):
             "results": results
         }
 
-    except Exception:
+    except Exception as e:
+
+        print(f"PIPELINE ERROR: {e}")
 
         return {
             "success": False,
-            "message": "LLM unavailable or quota exceeded.",
+            "message": str(e),
             "sql": None,
             "results": None
         }

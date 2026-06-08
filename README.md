@@ -120,7 +120,7 @@ This project currently uses the **Chinook Sample Database**.
 ## 🗺️ Development Roadmap
 
 - [x] Phase 1 — Database Setup
-- [ ] Phase 2 — Database Connection
+- [x] Phase 2 — Database Connection
 - [ ] Phase 3 — Query Execution Layer
 - [ ] Phase 4 — AI SQL Generation
 - [ ] Phase 5 — FastAPI Backend
