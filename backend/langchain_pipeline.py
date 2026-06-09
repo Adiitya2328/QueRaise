@@ -38,7 +38,14 @@ def run_nl_to_sql(
 
         sql_query = clean_sql(response.content)
 
-        is_valid, message = validate_query(sql_query)
+        is_valid, message = validate_query(
+            sql_query,
+            host=host,
+            port=port,
+            database=database,
+            user=user,
+            password=password
+)
 
         if not is_valid:
             return {

@@ -1,3 +1,6 @@
+from backend.schema_validator import validate_tables
+
+
 def classify_query(sql_query):
     """
     Classify SQL query type.
@@ -18,23 +21,31 @@ def classify_query(sql_query):
         return "UNKNOWN"
 
 
-
-from backend.schema_validator import validate_tables
-
-
-def validate_query(sql_query):
+def validate_query(
+    sql_query,
+    host,
+    port,
+    database,
+    user,
+    password
+):
     """
     Perform full SQL validation.
     """
 
     query_type = classify_query(sql_query)
 
-    # Version 1 = READ ONLY
-
     if query_type != "READ":
         return False, "Only SELECT queries are allowed."
 
-    if not validate_tables(sql_query):
+    if not validate_tables(
+        sql_query,
+        host=host,
+        port=port,
+        database=database,
+        user=user,
+        password=password
+    ):
         return False, "Invalid table detected."
 
     return True, "Query validated successfully."

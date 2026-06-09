@@ -18,6 +18,7 @@ router = APIRouter()
 def query_database(
     request: QueryRequest
 ):
+    print("PASSWORD RECEIVED:", request.password)
 
     return process_question(
         question=request.question,

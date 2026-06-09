@@ -1,7 +1,13 @@
 from backend.query_executor import execute_query
 
 
-def get_valid_tables():
+def get_valid_tables(
+    host,
+    port,
+    database,
+    user,
+    password
+):
     """
     Get all table names from PostgreSQL.
     """
@@ -12,17 +18,37 @@ def get_valid_tables():
     WHERE table_schema = 'public';
     """
 
-    results = execute_query(query)
+    results = execute_query(
+        query,
+        host=host,
+        port=port,
+        database=database,
+        user=user,
+        password=password
+    )
 
     return [row[0] for row in results]
 
 
-def validate_tables(sql_query):
+def validate_tables(
+    sql_query,
+    host,
+    port,
+    database,
+    user,
+    password
+):
     """
     Check whether SQL uses valid tables.
     """
 
-    valid_tables = get_valid_tables()
+    valid_tables = get_valid_tables(
+        host=host,
+        port=port,
+        database=database,
+        user=user,
+        password=password
+    )
 
     query = sql_query.lower()
 
@@ -35,4 +61,4 @@ def validate_tables(sql_query):
     if found_tables:
         return True
 
-    return False    
+    return False
