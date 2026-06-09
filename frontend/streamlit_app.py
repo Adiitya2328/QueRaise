@@ -49,7 +49,7 @@ connect_clicked = st.sidebar.button(
 if connect_clicked:
 
     response = requests.post(
-        "http://127.0.0.1:8000/test-connection",
+        "https://queraise.onrender.com/test-connection",
         json={
             "host": db_host,
             "port": int(db_port),
@@ -106,7 +106,7 @@ if st.button("Ask QueRaise"):
     else:
 
         response = requests.post(
-            "http://127.0.0.1:8000/query",
+            "https://queraise.onrender.com/query",
             json={
                 "question": question,
                 "host": st.session_state["db_config"]["host"],
