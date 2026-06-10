@@ -422,8 +422,6 @@ GEMINI_API_KEY = your_key_here
 - **Production awareness** — validation layer, read-only safety, error handling
 - **Professional Git workflow** — feature branches, structured commits, clean history
 
-**Resume line:**
-> *"Designed and deployed a schema-agnostic text-to-SQL pipeline using LangChain + Google Gemini 2.5 Flash that dynamically connects to any PostgreSQL database, auto-discovers schema at runtime, and returns live query results from natural language input via a FastAPI + Streamlit interface"*
 
 ---
 
